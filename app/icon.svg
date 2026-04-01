@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="YH AI Systems icon">
+  <defs>
+    <linearGradient id="bg" x1="10%" y1="10%" x2="90%" y2="90%">
+      <stop offset="0%" stop-color="#0b1323" />
+      <stop offset="55%" stop-color="#111c31" />
+      <stop offset="100%" stop-color="#1a2740" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f4b223" />
+      <stop offset="100%" stop-color="#e07a12" />
+    </linearGradient>
+    <linearGradient id="cool" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4fd1ff" />
+      <stop offset="100%" stop-color="#7ef0d2" />
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="128" height="128" rx="28" fill="url(#bg)" />
+  <rect x="4" y="4" width="120" height="120" rx="24" fill="none" stroke="rgba(255,255,255,0.08)" />
+
+  <g opacity="0.45">
+    <path d="M20 28H40" stroke="url(#cool)" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M88 22H108" stroke="url(#cool)" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M96 96H110" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M18 94H30" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="42" cy="28" r="3" fill="#7ef0d2" />
+    <circle cx="86" cy="22" r="3" fill="#4fd1ff" />
+    <circle cx="94" cy="96" r="3" fill="#f4b223" />
+    <circle cx="34" cy="94" r="3" fill="#e07a12" />
+  </g>
+
+  <g filter="url(#glow)">
+    <path
+      d="M33 32L50 63L67 32"
+      fill="none"
+      stroke="url(#accent)"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M64 31V96M64 62H93M93 31V96"
+      fill="none"
+      stroke="#f5f7fb"
+      stroke-width="8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <g opacity="0.18">
+    <path d="M24 68H54" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+    <path d="M74 76H104" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+    <path d="M84 52H108" stroke="#ffffff" stroke-width="2" stroke-linecap="round" />
+  </g>
+</svg>

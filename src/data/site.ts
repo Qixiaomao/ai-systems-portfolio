@@ -18,7 +18,7 @@ export const profile = {
 export const contact: { github: string; email: string; cv: string; x: string } =
   {
     github: "https://github.com/Qixiaomao/ai-systems-portfolio",
-    email: "",
+    email: "7xiaomao@gmail.com",
     cv: "/about#cv",
     x: "",
   };

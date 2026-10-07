@@ -12,9 +12,21 @@ import { Terminal } from "@/components/Terminal";
 import { HeroWorkspace } from "@/components/HeroWorkspace";
 import { ProfileLinks } from "@/components/ProfileLinks";
 import { UpdatesList } from "@/components/UpdatesList";
-import { profile, portals } from "@/data/site";
+import { profile, portals, updates } from "@/data/site";
+import { getWritingPosts } from "@/lib/writing";
 
 export default function Home() {
+  const latest = getWritingPosts()[0];
+  const recentUpdates = latest
+    ? [
+        {
+          date: latest.date,
+          title: latest.title,
+          href: `/writing/${latest.slug}`,
+        },
+        ...updates.slice(0, 4),
+      ]
+    : updates;
   return (
     <main id="content" tabIndex={-1}>
       <section className="hero" aria-labelledby="intro-title">
@@ -80,7 +92,7 @@ export default function Home() {
             <FileText aria-hidden="true" />
             Recent Updates
           </h2>
-          <UpdatesList />
+          <UpdatesList items={recentUpdates} />
           <Link className="text-link" href="/writing">
             View all updates <ArrowRight aria-hidden="true" />
           </Link>

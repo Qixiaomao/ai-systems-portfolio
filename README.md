@@ -95,7 +95,19 @@ npm run build
 npm run start -- --hostname 127.0.0.1 --port 3001
 ```
 
-目前应验收首页、三个内容页、旧版地址重定向以及六个像素素材。建议人工检查 1214px 桌面和 375px 手机布局、主题刷新记忆及导航。写作页的真实文章导入属于后续阶段。
+目前应验收首页、三个内容页、文章详情页、旧版地址重定向以及六个像素素材。建议人工检查 1214px 桌面和 375px 手机布局、主题刷新记忆及导航。Writing 已接入首篇公开英文文章，后续文章按下述流程更新。
+
+## Writing 发布流程
+
+本地 Obsidian 知识库仍默认私有。只有 frontmatter 中明确标记 `publish: true` 且状态为 `ready` 或 `synced` 的英文稿才会导出。私有来源字段和 `<!-- PUBLIC_END -->` 后的内部笔记不会进入仓库。配置本机忽略的 `.local/writing-source.json` 或 `WRITING_SOURCE_DIR` 后运行：
+
+```bash
+npm run content:sync
+npm run test:content
+npm run check
+```
+
+提交前检查 `git diff` 和 `git status`，只提交 `content/writing/` 下的公开稿、`public/content/` 下的配图和网站代码。字段、目录示例及撤稿步骤见 [公开写作说明](content/writing/README.md)。
 
 ## 已知开发依赖告警
 

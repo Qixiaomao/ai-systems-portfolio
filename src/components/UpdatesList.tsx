@@ -12,10 +12,10 @@ const monthDate = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-export function UpdatesList() {
+export function UpdatesList({ items = updates }: { items?: typeof updates }) {
   return (
     <ol className="updates">
-      {updates.map((update) => (
+      {items.map((update) => (
         <li key={`${update.date}-${update.title}`}>
           <time dateTime={update.date}>
             {(update.date.length === 10 ? fullDate : monthDate).format(

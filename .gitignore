@@ -10,5 +10,6 @@ LOG.md
 next-env.d.ts
 .env*
 !.env.example
+.local/
 *.log
 .DS_Store

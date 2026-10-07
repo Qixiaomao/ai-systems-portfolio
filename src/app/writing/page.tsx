@@ -2,17 +2,37 @@ import type { Metadata } from "next";
 import { SectionPage } from "@/components/SectionPage";
 import { UpdatesList } from "@/components/UpdatesList";
 import { research } from "@/data/site";
+import Link from "next/link";
+import { getWritingPosts } from "@/lib/writing";
 
 export const metadata: Metadata = { title: "Writing — Lucas Huang" };
 
 export default function WritingPage() {
+  const posts = getWritingPosts();
   return (
     <SectionPage
       title="Writing"
       description="Selected essays, observations, and research in progress."
       pose="sleep"
     >
+      <section className="writing-posts" aria-label="Published writing">
+        {posts.map((post) => (
+          <article className="writing-post" key={post.slug}>
+            <time dateTime={post.date}>{post.date}</time>
+            <h2>
+              <Link href={`/writing/${post.slug}`}>{post.title}</Link>
+            </h2>
+            <p>{post.summary}</p>
+            <div className="tags">
+              {post.tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+          </article>
+        ))}
+      </section>
       <div className="writing-archive">
+        <h2>Recent updates</h2>
         <UpdatesList />
       </div>
       <section

@@ -17,7 +17,7 @@ export const profile = {
 // Add verified personal links here. The CV link points to the public About page.
 export const contact: { github: string; email: string; cv: string; x: string } =
   {
-    github: "",
+    github: "https://github.com/Qixiaomao/ai-systems-portfolio",
     email: "",
     cv: "/about#cv",
     x: "",

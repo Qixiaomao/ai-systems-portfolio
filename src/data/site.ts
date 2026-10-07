@@ -3,10 +3,15 @@ export const profile = {
   title: "Lucas Huang — AI Systems",
   subtitle: "Researcher · Builder · Lifelong Learner",
   description:
-    "Exploring AI systems that can understand, coordinate and execute in the real world.",
+    "Researching control in multi-agent systems, with a current focus on routing and AI infrastructure.",
   location: "Shenzhen, China",
-  education: "Master in Information Technology",
-  currentRole: "Research Assistant",
+  education: "MSc in Computer Science and Technology",
+  educationSchool: "INTI International University, Malaysia",
+  currentRole: "Research Assistant at SIAT",
+  organization:
+    "Large Model Center, Shenzhen Institutes of Advanced Technology",
+  researchFocus:
+    "I study how multi-agent systems are routed, coordinated, and checked. Harness design is one practical expression of that control layer. Right now I am exploring routing strategies and AI infrastructure optimization.",
   avatar: "/profile/wechat-avatar.jpeg",
   quote: "A calmer mind builds better systems.",
   about:
@@ -33,7 +38,7 @@ export const navigation = [
 export const portals = [
   {
     title: "Research",
-    description: "Multi-agent systems, AI safety, LLM routing, and more.",
+    description: "Multi-agent control, routing, and AI infrastructure.",
     href: "/writing#research",
     pose: "read" as const,
   },
@@ -45,7 +50,7 @@ export const portals = [
   },
   {
     title: "Writing",
-    description: "Notes, thoughts, and the occasional life logs.",
+    description: "English essays and notes on research in progress.",
     href: "/writing",
     pose: "sleep" as const,
   },
@@ -61,68 +66,89 @@ type Project = {
   title: string;
   description: string;
   meta: string;
-  href?: string;
+  href: string;
 };
 type Update = { date: string; title: string; href?: string };
 
 export const research: ResearchTopic[] = [
   {
-    title: "Layered LLM Routing",
+    title: "Routing Strategies",
     description:
-      "Hierarchical routing for capable, cost-aware and reliable model serving.",
-    tags: ["Routing", "Evaluation", "LLM Systems"],
+      "How to assign models, tools, and work across agents while balancing quality, cost, and reliability.",
+    tags: ["Routing", "MAS", "Evaluation"],
   },
   {
-    title: "Agent Evaluation",
+    title: "Multi-Agent Control",
     description:
-      "Evaluation methods for agents, tools, long-horizon behavior and system reliability.",
-    tags: ["Agents", "Benchmarking", "Evals"],
+      "The control layer around agents: coordination, feedback, verification, and the harnesses that put these ideas into practice.",
+    tags: ["Agents", "Control", "Harness"],
   },
   {
-    title: "AI Systems & Control",
+    title: "AI Infrastructure",
     description:
-      "Systems-oriented research on orchestration, multi-agent control and practical AI infrastructure.",
-    tags: ["AI Infra", "Control", "MAS"],
+      "Making the systems that run agent workloads more efficient and easier to observe.",
+    tags: ["AI Infra", "Optimization", "Systems"],
   },
 ];
 
 export const projects: Project[] = [
   {
-    title: "CUDA GEMM",
+    title: "MiniBot",
     description:
-      "GPU kernel optimization around tiling, memory movement and profiling.",
-    meta: "SYSTEMS",
+      "A small MiMo-powered agent with tool calls, context compression, and file-backed memory. It is a practical place to test how an agent's control loop is organized.",
+    meta: "AGENTS",
+    href: "https://github.com/Qixiaomao/minibot",
   },
   {
-    title: "Enterprise RAG",
+    title: "Enterprise RAG Assistant",
     description:
-      "Retrieval, reranking and evaluation for a practical knowledge assistant.",
+      "A local knowledge-base assistant built with Next.js and FastAPI. It combines dense and keyword retrieval, lightweight reranking, and source-linked answers.",
     meta: "AI ENGINEERING",
+    href: "https://github.com/Qixiaomao/enterprise-rag",
+  },
+  {
+    title: "CUDA GEMM",
+    description:
+      "A custom PyTorch CUDA extension for matrix multiplication. The repository documents tiling, shared-memory reuse, register tiling, and profiler-based comparison.",
+    meta: "SYSTEMS",
+    href: "https://github.com/Qixiaomao/CUDA-GEMM-Optimization-Journey",
   },
   {
     title: "ViT–GPT-2 Video Captioning",
     description:
-      "End-to-end multimodal captioning with a vision encoder and language decoder.",
+      "My master's project: a ViT-based visual encoder and GPT-2 decoder for video captioning, with local inference, benchmarking, and profiling tools.",
     meta: "MULTIMODAL",
+    href: "https://github.com/Qixiaomao/video-caption-algorithm",
   },
 ];
 
-// Transcribed from the user-provided design reference; links are still optional.
+// Public repository update dates, checked on 2026-10-07. Keep these in sync manually.
 export const updates: Update[] = [
-  { date: "2026-10-02", title: "Notes on Stanford CS329z (Day 1)" },
-  { date: "2026-09-30", title: "Exploring Layered LLM Routing for Legal QA" },
-  { date: "2026-09-24", title: "Contract Review Pipeline Optimization" },
-  { date: "2026-09-17", title: "Agent Evaluation Notes (Phoenix / Span)" },
   {
-    date: "2026-09-08",
-    title: "Research Direction: Scaling AI Safety for a MAS World",
+    date: "2026-06-03",
+    title: "MiniBot: tools and memory for a small agent",
+    href: "https://github.com/Qixiaomao/minibot",
+  },
+  {
+    date: "2026-04-30",
+    title: "Enterprise RAG Assistant",
+    href: "https://github.com/Qixiaomao/enterprise-rag",
+  },
+  {
+    date: "2026-04-24",
+    title: "Video Captioning Transformer",
+    href: "https://github.com/Qixiaomao/video-caption-algorithm",
+  },
+  {
+    date: "2026-03-22",
+    title: "CUDA GEMM optimization",
+    href: "https://github.com/Qixiaomao/CUDA-GEMM-Optimization-Journey",
   },
 ];
 
 export const interests = [
   "AI Systems & Agents",
-  "Evaluation & Reasoning",
-  "Machine Learning / Vision",
-  "AI Safety (MAS)",
-  "Books / Fitness / A calmer life",
+  "Routing & Control",
+  "AI Infrastructure",
+  "Books / Fitness / Photography",
 ];

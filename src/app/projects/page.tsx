@@ -21,15 +21,26 @@ export default function ProjectsPage() {
               <span className="entry-category">{project.meta}</span>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
-              {project.href && (
-                <a className="text-link" href={project.href}>
-                  Explore project ↗
-                </a>
-              )}
+              <a
+                className="text-link"
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View repository ↗
+              </a>
             </div>
           </article>
         ))}
       </div>
+      <a
+        className="text-link projects-more"
+        href="https://github.com/Qixiaomao?tab=repositories"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        More projects on GitHub ↗
+      </a>
     </SectionPage>
   );
 }

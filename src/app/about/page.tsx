@@ -11,8 +11,8 @@ export default function AboutPage() {
     <SectionPage title="About" description={profile.subtitle} pose="sit">
       <div className="about-grid">
         <div className="about-copy">
-          <h2>Curiosity, systems, and a calmer life.</h2>
-          <p>{profile.about}</p>
+          <h2>Working on control for multi-agent systems.</h2>
+          <p>{profile.researchFocus}</p>
           <section id="cv" className="cv-overview" aria-labelledby="cv-title">
             <h3 id="cv-title">CV at a glance</h3>
             <dl>
@@ -22,14 +22,21 @@ export default function AboutPage() {
               </div>
               <div>
                 <dt>Education</dt>
-                <dd>{profile.education}</dd>
+                <dd>
+                  {profile.education}
+                  <small>{profile.educationSchool}</small>
+                </dd>
               </div>
               <div>
                 <dt>Current role</dt>
-                <dd>{profile.currentRole}</dd>
+                <dd>
+                  Research Assistant
+                  <small>{profile.organization}</small>
+                </dd>
               </div>
             </dl>
           </section>
+          <p>{profile.about}</p>
           <ProfileLinks />
         </div>
         <Terminal />

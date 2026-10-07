@@ -891,6 +891,15 @@ main:focus:not(:focus-visible) {
 .cv-overview dt {
   color: var(--muted);
 }
+.cv-overview dd small {
+  display: block;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.projects-more {
+  display: inline-flex;
+  margin: 28px 0 0 65px;
+}
 
 @media (max-width: 1180px) {
   .shell {

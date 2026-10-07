@@ -115,9 +115,9 @@ npm run check
 
 ## GitHub 与 Vercel 部署
 
-**当前流程**：这个公开仓库是唯一的编辑源，但现有 Vercel 项目仍连接旧的私有仓库 `Qixiaomao/ai-systems-portfolio-vercel`。域名 `ymh-ai.com` 跳转到 `www.ymh-ai.com`，后者指向该 Vercel 项目的生产部署。因此，推送公开仓库的 `main` **不会单独更新域名**；发布时还需把同一版代码同步到私有部署仓库的 `main`。不要在部署仓库单独改网站内容。
+现有 Vercel 项目 `ai-systems-portfolio-vercel` 已连接公开仓库 `Qixiaomao/ai-systems-portfolio`，生产分支为 `main`。`ymh-ai.com` 跳转到 `www.ymh-ai.com`，后者指向该项目的生产部署。日常发布只需 `本地修改 → 检查内容与构建 → 推送公开 main → Vercel 自动部署 → 检查域名`；无需再同步旧的私有部署仓库。旧仓库暂时保留作回退备份，不再作为编辑源。
 
-**计划中的单仓流程，尚未切换**：在现有 Vercel 项目的 **Settings → Git** 中，把连接的仓库改为公开的 `Qixiaomao/ai-systems-portfolio`，并确认 Production 跟踪 `main`。继续使用同一个 Vercel 项目及其域名配置；确认从公开仓库触发的新部署在首页、Projects、About、Writing 和文章页都正常后，再停止同步私有部署仓库。届时的流程就是 `本地修改 → 推送公开 main → Vercel 自动部署 → 域名更新`。变更连接前，先确认 Vercel GitHub App 有该公开仓库的访问权限。设置位置和部署行为见 [Vercel Git 设置](https://vercel.com/docs/project-configuration/git-settings)与 [GitHub 集成文档](https://vercel.com/docs/git/vercel-for-github)。
+推送前检查 `git diff`，确认只有可公开的文章、配图和代码；尤其不要提交 Obsidian 原始笔记、简历原件、`.env*` 或 `.vercel/`。推送后到 [Vercel 项目](https://vercel.com/7xiaomao-6372s-projects/ai-systems-portfolio-vercel) 查看生产部署状态，再访问 [网站](https://www.ymh-ai.com) 验证。Git 连接及自动部署行为见 [Vercel Git 设置](https://vercel.com/docs/project-configuration/git-settings)与 [GitHub 集成文档](https://vercel.com/docs/git/vercel-for-github)。
 
 ## 已知开发依赖告警
 

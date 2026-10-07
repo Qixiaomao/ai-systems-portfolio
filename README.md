@@ -2,7 +2,7 @@
 
 以项目根目录的 `设计图.png` 为视觉参考的英文个人站。使用 Next.js App Router、React、TypeScript、Tailwind CSS；保留浅色纸张、衬线标题、手写等宽文字和三花像素猫插画。
 
-这个实现作为现有 `Qixiaomao/ai-systems-portfolio` 仓库的迁移版本，主入口为 Home、Projects、Writing、About。研究进展放在 Writing，公开履历展示放在 About。当前阶段保留原站的视觉和占位内容；旧版已经核实的履历、项目资料和经作者批准的英文文章会在后续阶段逐项迁入。
+公开源码位于 [Qixiaomao/ai-systems-portfolio](https://github.com/Qixiaomao/ai-systems-portfolio) 的 `main` 分支，线上地址为 [ymh-ai.com](https://ymh-ai.com)。主入口是 Home、Projects、Writing、About：Projects 链接精选的公开仓库，Writing 展示已审核的英文文章和研究进展，About 只展示脱敏后的履历摘要。
 
 ## 本次设计调整
 
@@ -14,7 +14,7 @@
 
 正文使用本地打包的 [Comic Mono](https://github.com/dtinth/comic-mono-font) 字体（MIT 许可证）；无需运行时访问外部字体服务。字体许可证随 `@fontsource/comic-mono` 包提供。
 
-这是一个展示型前端项目，没有数据库、登录或后端 API，不需要环境变量。
+这是一个展示型前端项目，没有数据库、登录或后端 API。网站构建不需要环境变量；仅本地文章同步脚本可使用 `WRITING_SOURCE_DIR` 指定私有知识库中的 `writing` 目录。
 
 ## 本地运行
 
@@ -38,12 +38,16 @@ PowerShell 如果阻止执行 `npm.ps1`，改用 `npm.cmd ci` 和 `npm.cmd run d
 | `设计图.png`                           | 本次实现的视觉参考                                   |
 | `src/app/page.tsx`                     | 参考图首页                                           |
 | `src/app/projects/page.tsx`            | 项目列表                                             |
-| `src/app/writing/page.tsx`             | 动态列表与研究方向                                   |
+| `src/app/writing/page.tsx`             | 英文文章列表与研究方向                               |
+| `src/app/writing/[slug]/page.tsx`      | 文章详情页                                           |
 | `src/app/about/page.tsx`               | 个人介绍与公开 CV 概览                               |
 | `next.config.ts`                       | 旧版路径到四个主页面的临时重定向                     |
 | `src/app/layout.tsx`                   | 共享导航、页脚、元信息、字体和主题初始化             |
 | `src/app/globals.css`                  | 布局尺寸、主题颜色、响应式和动画                     |
 | `src/data/site.ts`                     | 个人资料、入口卡片、联系信息、研究、项目、动态和兴趣 |
+| `content/writing/`                     | 已审核、可公开的英文 Markdown 文章                   |
+| `public/content/`                      | 文章引用的公开配图                                   |
+| `scripts/sync-writing.mjs`             | 从本地知识库导出获准公开的文章                       |
 | `src/components/Header.tsx`            | 导航和当前页面指示                                   |
 | `src/components/ThemeToggle.tsx`       | 主题切换及存储                                       |
 | `src/components/ProfileLinks.tsx`      | 联系按钮与页脚图标                                   |
@@ -74,11 +78,11 @@ npm run assets:extract
 
 - `profile`：头像、个人介绍、所在地、学历、当前角色和页脚文字。
 - `portals`：首页三张入口卡片。
-- `research` / `projects`：研究与项目列表，支持可选的 `href`。
+- `research` / `projects`：研究方向与精选项目；展示项目必须有公开仓库链接。
 - `updates`：动态，支持 `YYYY-MM` 或 `YYYY-MM-DD` 日期及可选的 `href`。
-- `contact.github` / `contact.email` / `contact.cv` / `contact.x`：真实联系方式。空值会禁用相应入口，并提供待补充的提示，不使用假地址。CV 目前指向 `/about#cv`；对外邮箱由作者确认后再填写。
+- `contact.github` / `contact.email` / `contact.cv` / `contact.x`：公开联系方式。CV 指向 `/about#cv`，邮箱使用作者确认的个人 Gmail；空值会禁用相应入口。
 
-首页动态和兴趣文字来自本次参考图，研究 / 项目介绍保留原始项目内容。上线前应确认文字及个人资料，并补充真实论文、仓库和文章链接。
+首页动态链接公开文章与仓库。修改学历、工作单位或研究方向时，只写本人已确认且允许公开的信息；不要把原始简历 PDF、证件或内部笔记复制到项目中。
 
 ## 检查和构建
 
@@ -108,6 +112,12 @@ npm run check
 ```
 
 提交前检查 `git diff` 和 `git status`，只提交 `content/writing/` 下的公开稿、`public/content/` 下的配图和网站代码。字段、目录示例及撤稿步骤见 [公开写作说明](content/writing/README.md)。
+
+## GitHub 与 Vercel 部署
+
+**当前流程**：这个公开仓库是唯一的编辑源，但现有 Vercel 项目仍连接旧的私有仓库 `Qixiaomao/ai-systems-portfolio-vercel`。域名 `ymh-ai.com` 跳转到 `www.ymh-ai.com`，后者指向该 Vercel 项目的生产部署。因此，推送公开仓库的 `main` **不会单独更新域名**；发布时还需把同一版代码同步到私有部署仓库的 `main`。不要在部署仓库单独改网站内容。
+
+**计划中的单仓流程，尚未切换**：在现有 Vercel 项目的 **Settings → Git** 中，把连接的仓库改为公开的 `Qixiaomao/ai-systems-portfolio`，并确认 Production 跟踪 `main`。继续使用同一个 Vercel 项目及其域名配置；确认从公开仓库触发的新部署在首页、Projects、About、Writing 和文章页都正常后，再停止同步私有部署仓库。届时的流程就是 `本地修改 → 推送公开 main → Vercel 自动部署 → 域名更新`。变更连接前，先确认 Vercel GitHub App 有该公开仓库的访问权限。设置位置和部署行为见 [Vercel Git 设置](https://vercel.com/docs/project-configuration/git-settings)与 [GitHub 集成文档](https://vercel.com/docs/git/vercel-for-github)。
 
 ## 已知开发依赖告警
 

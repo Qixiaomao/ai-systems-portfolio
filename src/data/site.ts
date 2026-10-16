@@ -5,7 +5,8 @@ export const profile = {
   description:
     "Researching control in multi-agent systems, with a current focus on routing and AI infrastructure.",
   location: "Shenzhen, China",
-  education: "MSc in Computer Science and Technology",
+  // Confirm the exact award title against the official degree certificate.
+  education: "Master's degree (official title pending verification)",
   educationSchool: "INTI International University, Malaysia",
   currentRole: "Research Assistant at SIAT",
   organization:
@@ -116,14 +117,20 @@ export const projects: Project[] = [
   {
     title: "ViT–GPT-2 Video Captioning",
     description:
-      "My master's project: a ViT-based visual encoder and GPT-2 decoder for video captioning, with local inference, benchmarking, and profiling tools.",
+      "My master's project: a ViT-based visual encoder and GPT-2 decoder for video captioning. Experiment code, protocols, and numeric evidence verification tools are public; full fresh-clone GPU reproduction remains incomplete.",
     meta: "MULTIMODAL",
     href: "https://github.com/Qixiaomao/video-caption-algorithm",
   },
 ];
 
-// Public repository update dates, checked on 2026-10-07. Keep these in sync manually.
+// Verified public milestones. Material publication and numeric checks are not GPU reproduction.
 export const updates: Update[] = [
+  {
+    date: "2026-10-14",
+    title:
+      "Video captioning: experiment code, protocols, and numeric evidence checks published; full GPU reproduction pending",
+    href: "https://github.com/Qixiaomao/video-caption-algorithm/pull/1",
+  },
   {
     date: "2026-06-03",
     title: "MiniBot: tools and memory for a small agent",

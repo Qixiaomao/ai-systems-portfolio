@@ -17,16 +17,20 @@ import { getWritingPosts } from "@/lib/writing";
 
 export default function Home() {
   const latest = getWritingPosts()[0];
-  const recentUpdates = latest
-    ? [
-        {
-          date: latest.date,
-          title: latest.title,
-          href: `/writing/${latest.slug}`,
-        },
-        ...updates.slice(0, 4),
-      ]
-    : updates;
+  const recentUpdates = (
+    latest
+      ? [
+          {
+            date: latest.date,
+            title: latest.title,
+            href: `/writing/${latest.slug}`,
+          },
+          ...updates,
+        ]
+      : [...updates]
+  )
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 5);
   return (
     <main id="content" tabIndex={-1}>
       <section className="hero" aria-labelledby="intro-title">
